@@ -237,8 +237,8 @@ const moments = [
 ];
 
 const referenceSlots = [
-  { initials: 'R1', name: 'Supervisor / Teacher Name', position: 'Add position', organization: 'Southeast University', email: 'Add email' },
-  { initials: 'R2', name: 'Reference Name', position: 'Add position', organization: 'Add organization', email: 'Add email' },
+  { image:'borhan.ularif.jpg', name: 'Borhan Ul Arif', position: 'Lecturer', organization: 'Southeast University', email: 'borhan.ularif@seu.edu.bd' },
+  { image: 'sim.adnan.jpg', name: 'S I M Adnan', position: 'Lecturer', organization: 'Southeast University', email: 'sim.adnan@seu.edu.bd' },
 ];
 
 const SmartLink = ({ href, children, className = '', ...props }) => {
@@ -664,7 +664,7 @@ function App() {
                 <div className="mt-4 space-y-3">
                   {referenceSlots.map((ref) => (
                     <div className="reference-card" key={ref.initials}>
-                      <div className="reference-avatar">{ref.initials}</div>
+                      <img src={ref.image} alt={ref.name} className="w-12 h-12 rounded-full object-cover border-2 border-emerald-200"/>
                       <div>
                         <h3>{ref.name}</h3>
                         <p>{ref.position}<br/>{ref.organization}<br/>{ref.email}</p>
