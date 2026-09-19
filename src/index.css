@@ -31,6 +31,8 @@ button, a, input, textarea { font: inherit; }
     content: "";
     @apply absolute -bottom-1 left-0 h-px w-0 bg-emerald-600 transition-all duration-200;
   }
+  .nav-link:hover {
+  @apply text-emerald-600 dark:text-emerald-400; }
   .nav-link:hover::after { @apply w-full; }
   .nav-link.active { @apply font-semibold text-emerald-700 dark:text-emerald-400; }
   .nav-link.active::after { @apply w-full; }

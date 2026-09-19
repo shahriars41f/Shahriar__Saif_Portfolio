@@ -429,7 +429,7 @@ function App() {
               <p className="mt-4 max-w-xl text-[15px] leading-7 text-slate-600 dark:text-slate-400">{PROFILE.shortIntro}</p>
 
               <div className="mt-7 flex flex-wrap gap-3">
-                <a className="primary-pill" href="#projects">View My Projects <Icon name="arrow" size={16}/></a>
+                <a className="inline-flex items-center rounded-full bg-emerald-600 px-6 py-3 font-semibold text-white transition hover:bg-emerald-700" href="#projects">View My Projects <Icon name="arrow" size={16}/></a>
                 <a className="secondary-pill" href={PROFILE.cv} download>View CV <Icon name="external" size={14}/></a>
               </div>
 
@@ -457,7 +457,7 @@ function App() {
           <div className="mt-9 grid gap-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
             <div className="text-copy">
               <p>
-                I’m a Computer Science & Engineering student passionate about cybersecurity, computer vision, artificial intelligence, and research.I enjoy building practical projects and exploring emerging technologies through hands-on development.
+                I’m a Computer Science & Engineering student passionate about cybersecurity, computer vision, artificial intelligence, and research. I enjoy building practical projects and exploring emerging technologiesthrough hands-on development.
               </p>
               <p>
                 I am particularly interested in research and continuously developing my technical and problem-solving skills. I enjoy connecting theoretical concepts with hands-on experimentation and using projects as a way to explore new technologies in depth.
