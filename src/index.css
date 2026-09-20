@@ -31,8 +31,7 @@ button, a, input, textarea { font: inherit; }
     content: "";
     @apply absolute -bottom-1 left-0 h-px w-0 bg-emerald-600 transition-all duration-200;
   }
-  .nav-link:hover {
-  @apply text-emerald-600 dark:text-emerald-400; }
+  .nav-link:hover { @apply text-emerald-600 dark:text-emerald-400; }
   .nav-link:hover::after { @apply w-full; }
   .nav-link.active { @apply font-semibold text-emerald-700 dark:text-emerald-400; }
   .nav-link.active::after { @apply w-full; }
@@ -63,7 +62,83 @@ button, a, input, textarea { font: inherit; }
   .availability {
     @apply inline-flex max-w-full items-center gap-2 rounded-full border border-emerald-300 bg-emerald-50 px-3 py-1.5 text-[12px] font-semibold text-emerald-700 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-300;
   }
-  .availability span { @apply h-2 w-2 shrink-0 rounded-full bg-emerald-500; }
+  .typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 16px;
+  margin-left: 4px;
+  background-color: #059669;
+  vertical-align: -2px;
+  animation: cursorBlink 0.8s steps(1) infinite;
+}
+
+@keyframes cursorBlink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+.availability .typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 16px;
+  margin-left: 4px;
+  background-color: #059669;
+  border-radius: 0;
+  animation: cursorBlink 0.8s steps(1) infinite;
+}
+.typing-wrapper {
+  display: inline-grid;
+  align-items: center;
+}
+
+.typing-measure,
+.typing-live {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+}
+
+.typing-measure {
+  visibility: hidden;
+}
+
+.typing-live {
+  display: inline-flex;
+  align-items: center;
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 15px;
+  margin-left: 3px;
+  background: #059669;
+  animation: cursorBlink 0.8s steps(1) infinite;
+}
+
+@keyframes cursorBlink {
+  0%, 50% {
+    opacity: 1;
+  }
+
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+.dark .typing-cursor {
+  background: #34d399;
+}
+
+.dark .typing-cursor {
+  background-color: #34d399;
+}
+  .availability-dot { @apply h-2 w-2 shrink-0 rounded-full bg-emerald-500;}
   .hero-title {
     @apply mt-2 text-[48px] font-black leading-[.96] tracking-[-.045em] sm:text-[62px];
   }

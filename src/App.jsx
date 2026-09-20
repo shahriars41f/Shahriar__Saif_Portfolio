@@ -285,6 +285,9 @@ function App() {
   const [sending, setSending] = useState(false);
   const [showTop, setShowTop] = useState(false);
   const [activeSection, setActiveSection] = useState('top');
+  const [showEducationDetails, setShowEducationDetails] = useState(false);
+  const opportunityText = PROFILE.badge;
+  const [typedOpportunity, setTypedOpportunity] = useState('');
 
   useEffect(() => {
     try {
@@ -337,6 +340,29 @@ function App() {
       window.removeEventListener('scroll', updateActiveSection);
       window.removeEventListener('resize', updateActiveSection);
     };
+  }, []);
+  useEffect(() => {
+  let index = 0;
+  let timer;
+
+  const typeText = () => {
+    if (index <= opportunityText.length) {
+      setTypedOpportunity(opportunityText.slice(0, index));
+      index += 1;
+
+      timer = setTimeout(typeText, 70);
+    } else {
+      timer = setTimeout(() => {
+        index = 0;
+        setTypedOpportunity('');
+        typeText();
+      }, 2000);
+    }
+  };
+
+  typeText();
+
+    return () => clearTimeout(timer);
   }, []);
 
   const submit = async (e) => {
@@ -422,7 +448,13 @@ function App() {
             </div>
 
             <div>
-              <div className="availability"><span/> {PROFILE.badge}</div>
+             <div className="availability"><span className="availability-dot"></span>
+              <div className="typing-wrapper">
+                <div className="typing-measure" aria-hidden="true">{PROFILE.badge}</div>
+                  <div className="typing-live">{typedOpportunity}<span className="typing-cursor" aria-hidden="true"></span>
+                </div>
+              </div>
+            </div>
               <p className="mt-5 text-sm text-slate-500 dark:text-slate-400">Hi, I&apos;m</p>
               <h1 className="hero-title">{PROFILE.firstName}<br/>{PROFILE.lastName}</h1>
               <h2 className="mt-5 max-w-[620px] text-xl font-extrabold leading-7 sm:text-[22px]">{PROFILE.title}</h2>
@@ -457,11 +489,24 @@ function App() {
           <div className="mt-9 grid gap-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
             <div className="text-copy">
               <p>
-                I’m a Computer Science & Engineering student passionate about cybersecurity, computer vision, artificial intelligence, and research. I enjoy building practical projects and exploring emerging technologiesthrough hands-on development.
+                I’m a Computer Science & Engineering student passionate about cybersecurity, computer vision, artificial intelligence, and research. I enjoy building practical projects and exploring emerging technologies through hands-on development.
               </p>
               <p>
                 I am particularly interested in research and continuously developing my technical and problem-solving skills. I enjoy connecting theoretical concepts with hands-on experimentation and using projects as a way to explore new technologies in depth.
               </p>
+               {/* Quick Focus */}
+              <div className="mt-6 flex flex-wrap gap-2">
+                  {[
+                       'Cybersecurity',
+                      'Computer Vision',
+                      'Artificial Intelligence',
+                      'Computer Networking',
+                   ].map((item) => (
+                  <span key={item} className="rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-700 transition hover:-translate-y-1 hover:shadow-md dark:border-emerald-900/50 dark:bg-emerald-950/30 dark:text-emerald-300" >
+                      {item}
+                  </span>
+                  ))}
+              </div>
             </div>
             
           </div>
@@ -488,6 +533,58 @@ function App() {
               <strong>Computer Vision · Multimodal AI · Federated Learning</strong>
               <span>Undergraduate CSE Student</span>
             </div>
+            <button onClick={() => setShowEducationDetails((prev) => !prev)}
+      className="mt-5 inline-flex items-center rounded-full border border-emerald-200 px-4 py-2 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-50 dark:border-emerald-800 dark:text-emerald-400 dark:hover:bg-emerald-950/30">
+      {showEducationDetails ? 'Hide Academic Details' : 'View Academic Details'}
+    </button>
+
+    {showEducationDetails && (
+      <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-white/10 dark:bg-white/5">
+        <div className="grid gap-4 sm:grid-cols-2">
+
+          <div>
+            <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
+              Current CGPA
+            </p>
+            <p className="mt-1 font-bold text-slate-800 dark:text-white">
+              3.84
+            </p>
+          </div>
+
+          <div>
+            <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
+              Expected Graduation
+            </p>
+            <p className="mt-1 font-bold text-slate-800 dark:text-white">
+              2027
+            </p>
+          </div>
+
+          <div className="sm:col-span-2">
+            <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
+              Academic & Research Focus
+            </p>
+
+            <div className="mt-2 flex flex-wrap gap-2">
+              {[
+                'Computer Vision',
+                'Multimodal AI',
+                'Federated Learning',
+                'Cybersecurity',
+              ].map((focus) => (
+                <span
+                  key={focus}
+                  className="rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 shadow-sm dark:bg-white/10 dark:text-slate-300"
+                >
+                  {focus}
+                </span>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    )}
           </div>
         </section>
 
