@@ -73,14 +73,14 @@ const navItems = [
 ];
 
 const researchInterests = [
-  { icon: 'eye', title: 'Computer Vision' },
-  { icon: 'brain', title: 'Multimodal AI' },
-  { icon: 'network', title: 'Federated Learning' },
-  { icon: 'chip', title: 'Artificial Intelligence & Machine Learning' },
-  { icon: 'shield', title: 'Cybersecurity' },
-  { icon: 'globe', title: 'Computer Networking' },
-  { icon: 'code', title: 'Deep Learning' },
-  { icon: 'book', title: 'Medical AI' },
+  { icon: '/Computer vision.png', title: 'Computer Vision' },
+  { icon: '/Multimodal Ai.png', title: 'Multimodal AI' },
+  { icon: '/Federated Learning.webp', title: 'Federated Learning' },
+  { icon: '/Artificial Intelligence & Machine Learning.png', title: 'Artificial Intelligence & Machine Learning' },
+  { icon: '/Cybersecurity.png', title: 'Cybersecurity' },
+  { icon: '/Computer Networking.png', title: 'Computer Networking' },
+  { icon: '/Deep Learning.png', title: 'Deep Learning' },
+  { icon: '/Medical AI.png', title: 'Medical AI' },
 ];
 
 const researchWork = [
@@ -590,14 +590,14 @@ function App() {
 
         <section id="research" className="section-shell reveal">
           <h2 className="section-title">Research</h2>
-          <p className="section-subtitle">Research interests, current directions, and the topics I want to explore further.</p>
+          <p className="section-subtitle">Research Interests, Current Research Focus, and Areas for Future Exploration</p>
 
           <div className="mt-9">
             <h3 className="subsection-title">Research Interests</h3>
             <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {researchInterests.map((item, idx) => (
-                <article key={item.title} className="interest-card">
-                  <span className={`interest-icon ${idx % 3 === 0 ? 'text-emerald-600 dark:text-emerald-400' : ''}`}><Icon name={item.icon} size={22}/></span>
+              {researchInterests.map((item) => (
+                <article key={item.title} className="interest-card flex items-center gap-3">
+                  <span className="interest-icon flex-shrink-0"><img src={item.icon}  alt={item.title} className="w-6 h-6 object-contain"/></span>
                   <h4>{item.title}</h4>
                 </article>
               ))}
