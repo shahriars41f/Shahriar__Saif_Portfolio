@@ -747,8 +747,8 @@ function App() {
           <div className="mt-8 grid gap-8 lg:grid-cols-[.86fr_1.14fr]">
             <div>
               <div className="space-y-3">
-                <div className="contact-pill"><Icon name="mail" size={16}/> {PROFILE.email || 'Add email in src/App.jsx'}</div>
-                <div className="contact-pill"><Icon name="phone" size={16}/> {PROFILE.phone || 'Add phone in src/App.jsx'}</div>
+                <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=${PROFILE.email}`} target="_blank" rel="noopener noreferrer" className="contact-pill"><Icon name="mail" size={16}/>{PROFILE.email || 'Add email in src/App.jsx'} </a>
+                <a href={`tel:${PROFILE.phone}`} className="contact-pill"><Icon name="phone" size={16}/>{PROFILE.phone || 'Add phone in src/App.jsx'} </a>
                 <div className="contact-pill"><Icon name="map" size={16}/> {PROFILE.location}</div>
               </div>
 
