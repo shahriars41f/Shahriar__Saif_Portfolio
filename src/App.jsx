@@ -16,7 +16,7 @@ const PROFILE = {
   linkedin: 'https://www.linkedin.com/in/shahriar-saif-b8371533b/', // Add LinkedIn URL here
   facebook: 'https://www.facebook.com/shahriar.saif.35', // Add Facebook URL here
   instagram: 'https://www.instagram.com/shahriar.saif.35/', // Add Instagram URL here
-  cv: 'https://drive.google.com/file/d/1gHuEsepi_XuTh7ZUzVSR8skEYY4gwyR3/view?usp=drive_link',
+  cv: 'https://drive.google.com/file/d/1_j5j_mAwC0HgwJsY3o7y4KA8svOVe2SY/view?usp=drive_link',
 };
 
 const Icon = ({ name, size = 18, className = '' }) => {
@@ -68,7 +68,10 @@ const navItems = [
   ['about', 'About'],
   ['education', 'Education'],
   ['research', 'Research'],
+  ['experience', 'Experience'],
   ['projects', 'Projects'],
+  ['skills', 'Skills'],
+  ['certifications', 'Certifications'],
   ['contact', 'Contact'],
 ];
 
@@ -639,7 +642,7 @@ function App() {
           </div>
         </section>
 
-        <section className="section-shell reveal">
+        <section id="experience" className="section-shell reveal">
           <h2 className="section-title">Experience</h2>
           <p className="section-subtitle">Independent learning and academic research experience.</p>
           <div className="mt-8 space-y-4">
@@ -690,7 +693,7 @@ function App() {
           </div>
         </section>
 
-        <section className="section-shell reveal">
+        <section id="skills" className="section-shell reveal">
           <h2 className="section-title">Skills & Technologies</h2>
           <p className="section-subtitle">Programming, development, research, cybersecurity, networking, and project tools.</p>
           <div className="mt-8 space-y-4">
@@ -705,7 +708,7 @@ function App() {
           </div>
         </section>
 
-        <section className="section-shell reveal">
+        <section id="certifications" className="section-shell reveal">
           <h2 className="section-title">Certifications</h2>
           <p className="section-subtitle">Selected cybersecurity certifications and training.</p>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
