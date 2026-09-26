@@ -341,3 +341,329 @@ button, a, input, textarea { font: inherit; }
   .hero-title { font-size: 46px; }
   .stats-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
 }
+/* =========================================================
+   PORTFOLIO ANIMATIONS
+   Paste this at the VERY END of src/index.css
+   ========================================================= */
+
+
+/* =========================================================
+   1. HERO PROFILE PHOTO
+   Page load -> fade + zoom -> gentle floating
+   ========================================================= */
+
+.hero-shell.is-visible .photo-wrap {
+  animation:
+    heroPhotoIn 0.9s cubic-bezier(.2, .8, .2, 1) both,
+    heroPhotoFloat 4.5s ease-in-out 1s infinite;
+}
+
+@keyframes heroPhotoIn {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes heroPhotoFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+
+/* =========================================================
+   2. HERO NAME REVEAL
+   Shahriar first -> Saif second
+   ========================================================= */
+
+.hero-title {
+  overflow: hidden;
+}
+
+.hero-name-line {
+  display: block;
+  opacity: 0;
+  transform: translateY(32px);
+}
+
+.hero-shell.is-visible .hero-name-line-1 {
+  animation: heroNameReveal 0.7s cubic-bezier(.2, .8, .2, 1) 0.12s both;
+}
+
+.hero-shell.is-visible .hero-name-line-2 {
+  animation: heroNameReveal 0.7s cubic-bezier(.2, .8, .2, 1) 0.28s both;
+}
+
+@keyframes heroNameReveal {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================================
+   3. RESEARCH INTEREST CARDS
+   Cards appear one by one while scrolling
+   ========================================================= */
+
+#research .interest-card {
+  opacity: 0;
+  transform: translateY(18px);
+
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s cubic-bezier(.2, .8, .2, 1),
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+/* Card 1 */
+#research.is-visible .interest-card:nth-child(1) {
+  transition-delay: 0.05s;
+}
+
+/* Card 2 */
+#research.is-visible .interest-card:nth-child(2) {
+  transition-delay: 0.13s;
+}
+
+/* Card 3 */
+#research.is-visible .interest-card:nth-child(3) {
+  transition-delay: 0.21s;
+}
+
+/* Card 4 */
+#research.is-visible .interest-card:nth-child(4) {
+  transition-delay: 0.29s;
+}
+
+/* Card 5 */
+#research.is-visible .interest-card:nth-child(5) {
+  transition-delay: 0.37s;
+}
+
+/* Card 6 */
+#research.is-visible .interest-card:nth-child(6) {
+  transition-delay: 0.45s;
+}
+
+/* Card 7 */
+#research.is-visible .interest-card:nth-child(7) {
+  transition-delay: 0.53s;
+}
+
+/* Card 8 */
+#research.is-visible .interest-card:nth-child(8) {
+  transition-delay: 0.61s;
+}
+
+
+#research.is-visible .interest-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* Keep existing hover movement */
+#research.is-visible .interest-card:hover {
+  transform: translateY(-4px);
+}
+
+
+/* =========================================================
+   4. PROJECT IMAGE HOVER ANIMATION
+   Hover -> image zoom + overlay + project title moves up
+   ========================================================= */
+
+.project-preview img {
+  transition: transform 0.55s cubic-bezier(.2, .8, .2, 1);
+}
+
+.project-preview-overlay {
+  background-color: transparent;
+  transition: background-color 0.4s ease;
+}
+
+.project-preview-copy {
+  transition: transform 0.45s cubic-bezier(.2, .8, .2, 1);
+}
+
+
+/* Image zoom */
+.project-card:hover .project-preview img {
+  transform: scale(1.08);
+}
+
+
+/* Slightly darker image */
+.project-card:hover .project-preview-overlay {
+  background-color: rgba(0, 0, 0, 0.14);
+}
+
+
+/* Title slightly moves upward */
+.project-card:hover .project-preview-copy {
+  transform: translateY(-6px);
+}
+
+
+/* =========================================================
+   5. RESEARCH / PROJECT TIMELINE
+   Line grows from top to bottom
+   ========================================================= */
+
+.timeline {
+  border-left-color: transparent;
+}
+
+
+/* New animated timeline line */
+.timeline::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+  bottom: 0;
+
+  width: 1px;
+
+  background: rgb(167 243 208);
+
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+
+/* Dark mode timeline color */
+.dark .timeline::before {
+  background: rgba(16, 185, 129, 0.35);
+}
+
+
+/* Start animation when Research section appears */
+#research.is-visible .timeline::before {
+  animation: timelineGrow 1.35s cubic-bezier(.2, .8, .2, 1) 0.15s both;
+}
+
+
+@keyframes timelineGrow {
+  from {
+    transform: scaleY(0);
+  }
+
+  to {
+    transform: scaleY(1);
+  }
+}
+
+
+/* Timeline items */
+.timeline-item {
+  opacity: 0;
+  transform: translateX(-14px);
+
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s cubic-bezier(.2, .8, .2, 1);
+}
+
+
+/* Show timeline items */
+#research.is-visible .timeline-item {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+/* Timeline item delays */
+
+#research.is-visible .timeline-item:nth-child(1) {
+  transition-delay: 0.20s;
+}
+
+#research.is-visible .timeline-item:nth-child(2) {
+  transition-delay: 0.38s;
+}
+
+#research.is-visible .timeline-item:nth-child(3) {
+  transition-delay: 0.56s;
+}
+
+#research.is-visible .timeline-item:nth-child(4) {
+  transition-delay: 0.74s;
+}
+
+#research.is-visible .timeline-item:nth-child(5) {
+  transition-delay: 0.92s;
+}
+
+
+/* =========================================================
+   6. SKILLS
+   Soft pop-up animation
+   ========================================================= */
+
+.skill-pill-animate {
+  opacity: 0;
+  transform: translateY(15px) scale(0.82);
+
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s cubic-bezier(.34, 1.56, .64, 1),
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+#skills.is-visible .skill-pill-animate {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+#skills.is-visible .skill-pill-animate:hover {
+  transform: translateY(-3px) scale(1.06);
+  transition-delay: 0ms !important;
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   Disable animations if user prefers reduced motion
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .hero-shell.is-visible .photo-wrap,
+  .hero-shell.is-visible .hero-name-line-1,
+  .hero-shell.is-visible .hero-name-line-2,
+  #research.is-visible .timeline::before {
+    animation: none !important;
+  }
+
+  .hero-name-line,
+  #research .interest-card,
+  .timeline-item,
+  .skill-group .skill-pill {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+}

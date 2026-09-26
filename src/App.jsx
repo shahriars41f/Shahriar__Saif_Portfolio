@@ -158,7 +158,7 @@ const projects = [
     text: 'A 3D computer lab classroom designed using OpenGL and C++, featuring desks, chairs, computers, lighting, and camera navigation to demonstrate core computer graphics concepts.',
     tags: ['C++', 'OpenGL', 'GLUT', '3D Graphics'],
     image: 'computer_lab.png',
-    github: '',
+    github: 'https://github.com/shahriars41f/Interactive-3D-Classroom',
     live: null,
     theme: 'project-emerald',
   },
@@ -459,7 +459,7 @@ function App() {
               </div>
             </div>
               <p className="mt-5 text-sm text-slate-500 dark:text-slate-400">Hi, I&apos;m</p>
-              <h1 className="hero-title">{PROFILE.firstName}<br/>{PROFILE.lastName}</h1>
+              <h1 className="hero-title"><span className="hero-name-line hero-name-line-1">{PROFILE.firstName}</span><span className="hero-name-line hero-name-line-2">{PROFILE.lastName}</span></h1>
               <h2 className="mt-5 max-w-[620px] text-xl font-extrabold leading-7 sm:text-[22px]">{PROFILE.title}</h2>
               <p className="mt-4 max-w-xl text-[15px] leading-7 text-slate-600 dark:text-slate-400">{PROFILE.shortIntro}</p>
 
@@ -598,11 +598,24 @@ function App() {
           <div className="mt-9">
             <h3 className="subsection-title">Research Interests</h3>
             <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {researchInterests.map((item) => (
-                <article key={item.title} className="interest-card flex items-center gap-3">
-                  <span className="interest-icon flex-shrink-0"><img src={item.icon}  alt={item.title} className="w-6 h-6 object-contain"/></span>
-                  <h4>{item.title}</h4>
-                </article>
+              {researchInterests.map((item, index) => (
+                  <article
+                    key={item.title}
+                    className="interest-card research-interest-animate flex items-center gap-3"
+                    style={{
+                        transitionDelay: `${index * 120}ms`,
+                  }}
+                  >
+                <span className="interest-icon flex-shrink-0">
+                  <img
+                    src={item.icon}
+                    alt={item.title}
+                    className="w-6 h-6 object-contain"
+                />
+                </span>
+
+                    <h4>{item.title}</h4>
+                  </article>
               ))}
             </div>
           </div>
@@ -628,17 +641,32 @@ function App() {
           <div className="mt-12">
             <h3 className="subsection-title">Research & Project Timeline</h3>
             <p className="section-subtitle">A concise view of how my cybersecurity, AI, and project work has developed over time.</p>
-            <div className="timeline mt-6">
+            <div className="timeline timeline-animated mt-6">
+
               {timelineItems.map((item, index) => (
-                <article className="timeline-item" key={`${item.year}-${item.title}`}>
-                  <span className="timeline-year">{item.year}</span>
-                  <div>
-                    <h4>{item.title}</h4>
-                    <p>{item.text}</p>
-                  </div>
-                </article>
+
+                <article
+                  className="timeline-item timeline-item-animate"
+                  key={`${item.year}-${item.title}`}
+                  style={{
+                      transitionDelay: `${300 + index * 180}ms`,
+                  }}
+                >
+
+                  <span className="timeline-year">
+                    {item.year}
+                  </span>
+
+                <div>
+                  <h4>{item.title}</h4>
+                  <p>{item.text}</p>
+                </div>
+
+                  </article>
+
               ))}
-            </div>
+
+          </div>
           </div>
         </section>
 
@@ -697,14 +725,37 @@ function App() {
           <h2 className="section-title">Skills & Technologies</h2>
           <p className="section-subtitle">Programming, development, research, cybersecurity, networking, and project tools.</p>
           <div className="mt-8 space-y-4">
-            {skillGroups.map((group) => (
-              <div className="skill-group" key={group.title}>
+            {skillGroups.map((group, groupIndex) => (
+
+              <div
+                className="skill-group"
+                key={group.title}
+              >  
+
                 <p>{group.title}</p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {group.items.map((item) => <span className="skill-pill" key={item}>{item}</span>)}
-                </div>
+
+               <div className="mt-3 flex flex-wrap gap-2">
+
+                {group.items.map((item, itemIndex) => (
+
+                  <span
+                    className="skill-pill skill-pill-animate"
+                    key={item}
+                    style={{
+                      transitionDelay:
+                        `${groupIndex * 100 + itemIndex * 70}ms`,
+                }}
+               >
+                  {item}
+                  </span>
+
+              ))}
+
               </div>
-            ))}
+
+            </div>
+
+          ))}
           </div>
         </section>
 
